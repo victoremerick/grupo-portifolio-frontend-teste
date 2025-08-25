@@ -1,0 +1,20 @@
+.filters {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  align-items: flex-end;
+}
+
+.actions {
+  margin-bottom: 16px;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+mat-chip-set {
+  max-width: 120px;
+}
+

@@ -1,0 +1,42 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="task-form">
+  <mat-form-field appearance="fill">
+    <mat-label>Título</mat-label>
+    <input matInput formControlName="titulo" maxlength="150" />
+    <mat-error *ngIf="form.controls['titulo'].hasError('required')">
+      Título é obrigatório
+    </mat-error>
+    <mat-error *ngIf="form.controls['titulo'].hasError('maxlength')">
+      Título deve ter no máximo 150 caracteres
+    </mat-error>
+    <mat-error *ngIf="form.controls['titulo'].hasError('serverError')">
+      {{ form.controls['titulo'].getError('serverError') }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Descrição</mat-label>
+    <textarea matInput formControlName="descricao" maxlength="2000"></textarea>
+    <mat-error *ngIf="form.controls['descricao'].hasError('maxlength')">
+      Descrição deve ter no máximo 2000 caracteres
+    </mat-error>
+    <mat-error *ngIf="form.controls['descricao'].hasError('serverError')">
+      {{ form.controls['descricao'].getError('serverError') }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status">
+      <mat-option *ngFor="let s of statuses" [value]="s.value">{{ s.label }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.controls['status'].hasError('required')">
+      Status é obrigatório
+    </mat-error>
+    <mat-error *ngIf="form.controls['status'].hasError('serverError')">
+      {{ form.controls['status'].getError('serverError') }}
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Salvar</button>
+  <a mat-button routerLink="/tasks">Cancelar</a>
+</form>
